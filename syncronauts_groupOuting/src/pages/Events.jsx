@@ -82,7 +82,7 @@ const Events = () => {
       case 'confirmed': return 'success';
       case 'planning': return 'warning';
       case 'cancelled': return 'error';
-      default: return 'default';
+      default: return 'secondary';
     }
   };
 
