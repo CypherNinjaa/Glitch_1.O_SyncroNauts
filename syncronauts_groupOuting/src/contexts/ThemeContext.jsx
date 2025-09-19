@@ -222,8 +222,8 @@ export const ThemeProvider = ({ children }) => {
 		if (savedTheme) {
 			return savedTheme === "dark";
 		}
-		// Default to dark mode
-		return true;
+		// Default to light mode for better visibility
+		return false;
 	});
 
 	const theme = createAppTheme(darkMode);

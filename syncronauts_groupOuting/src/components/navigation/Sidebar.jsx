@@ -28,7 +28,8 @@ import {
 	ChevronLeft as ChevronLeftIcon,
 	ChevronRight as ChevronRightIcon,
 } from "@mui/icons-material";
-import { useTheme } from "../../hooks/useTheme";
+import { useContext } from "react";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 const drawerWidthExpanded = 280;
 const drawerWidthCollapsed = 72;
@@ -44,7 +45,7 @@ const navigationItems = [
 const Sidebar = ({ collapsed = true, onToggle }) => {
 	const navigate = useNavigate();
 	const location = useLocation();
-	const { darkMode, toggleTheme } = useTheme();
+	const { darkMode, toggleTheme } = useContext(ThemeContext);
 
 	const handleItemClick = (path) => {
 		navigate(path);

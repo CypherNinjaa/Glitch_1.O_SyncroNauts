@@ -21,7 +21,6 @@ import {
 import Sidebar from '../components/navigation/Sidebar';
 import BottomNavigation from '../components/navigation/BottomNavigation';
 import ThemeToggle from '../components/ui/ThemeToggle';
-import { useAuth } from '../hooks/useAuth';
 import Home from '../pages/Home';
 import Chat from '../pages/Chat';
 import Events from '../pages/Events';
@@ -34,7 +33,6 @@ const MainLayout = () => {
   const [selectedTab, setSelectedTab] = useState(0);
   const [anchorEl, setAnchorEl] = useState(null);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(true); // Collapsed by default
-  const { user, signOut } = useAuth();
   
   const handleTabChange = (newValue) => {
     setSelectedTab(newValue);
@@ -46,11 +44,6 @@ const MainLayout = () => {
 
   const handleMenuClose = () => {
     setAnchorEl(null);
-  };
-
-  const handleSignOut = async () => {
-    await signOut();
-    handleMenuClose();
   };
 
   const handleToggleSidebar = () => {
@@ -138,14 +131,9 @@ const MainLayout = () => {
                       Profile
                     </Typography>
                     <Typography variant="caption" color="text.secondary">
-                      {user?.email}
+                      Chat User
                     </Typography>
                   </Box>
-                </MenuItem>
-                <Divider />
-                <MenuItem onClick={handleSignOut} sx={{ py: 1.5 }}>
-                  <LogoutIcon sx={{ mr: 2, fontSize: 20 }} />
-                  Sign Out
                 </MenuItem>
               </Menu>
             </Box>

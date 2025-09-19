@@ -1,10 +1,11 @@
 import React from "react";
 import { IconButton, Tooltip } from "@mui/material";
 import { DarkMode, LightMode } from "@mui/icons-material";
-import { useTheme } from "../../hooks/useTheme";
+import { useContext } from "react";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 const ThemeToggle = ({ sx = {} }) => {
-	const { darkMode, toggleTheme } = useTheme();
+	const { darkMode, toggleTheme } = useContext(ThemeContext);
 
 	return (
 		<Tooltip title={darkMode ? "Switch to light mode" : "Switch to dark mode"}>

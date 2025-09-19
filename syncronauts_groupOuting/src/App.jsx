@@ -1,144 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import {
-	Box,
-	AppBar,
-	Toolbar,
-	Typography,
-	Button,
-	Container,
-} from "@mui/material";
-import { AuthProvider } from "./contexts/AuthContext";
+import { Box } from "@mui/material";
 import ThemeProvider from "./contexts/ThemeContext";
-import { useAuth } from "./hooks/useAuth";
-import AuthModal from "./components/auth/AuthModal";
 import MainLayout from "./layout/MainLayout";
 
 // Main App Content Component
 const AppContent = () => {
-	const { user, loading, signOut } = useAuth();
-	const [authModalOpen, setAuthModalOpen] = useState(false);
-	const [authMode, setAuthMode] = useState("login");
-
-	const handleOpenLogin = () => {
-		setAuthMode("login");
-		setAuthModalOpen(true);
-	};
-
-	const handleOpenSignup = () => {
-		setAuthMode("signup");
-		setAuthModalOpen(true);
-	};
-
-	const handleCloseAuth = () => {
-		setAuthModalOpen(false);
-	};
-
-	const handleSignOut = async () => {
-		await signOut();
-	};
-
-	if (loading) {
-		return (
-			<Box
-				sx={{
-					display: "flex",
-					justifyContent: "center",
-					alignItems: "center",
-					height: "100vh",
-				}}
-			>
-				<Typography variant="h6">Loading...</Typography>
-			</Box>
-		);
-	}
-
+	// Go directly to dashboard - no authentication needed
 	return (
 		<Box sx={{ flexGrow: 1 }}>
-			{user ? (
-				<MainLayout />
-			) : (
-				<>
-					<AppBar position="static" elevation={0}>
-						<Toolbar>
-							<Typography
-								variant="h6"
-								component="div"
-								sx={{ flexGrow: 1, fontWeight: "bold" }}
-							>
-								SyncroNauts
-							</Typography>
-
-							<Box sx={{ display: "flex", gap: 1 }}>
-								<Button color="inherit" onClick={handleOpenLogin}>
-									Sign In
-								</Button>
-								<Button
-									color="inherit"
-									variant="outlined"
-									onClick={handleOpenSignup}
-									sx={{
-										borderColor: "rgba(255, 255, 255, 0.5)",
-										"&:hover": {
-											borderColor: "white",
-											backgroundColor: "rgba(255, 255, 255, 0.1)",
-										},
-									}}
-								>
-									Sign Up
-								</Button>
-							</Box>
-						</Toolbar>
-					</AppBar>
-
-					<Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-						<Box sx={{ textAlign: "center", py: 8 }}>
-							<Typography variant="h2" gutterBottom>
-								Welcome to SyncroNauts
-							</Typography>
-							<Typography variant="h5" color="text.secondary" paragraph>
-								Plan amazing group outings with your friends and family
-							</Typography>
-							<Typography
-								variant="body1"
-								color="text.secondary"
-								paragraph
-								sx={{ maxWidth: 600, mx: "auto" }}
-							>
-								Join our community to organize unforgettable adventures,
-								coordinate schedules, and create lasting memories with your
-								favorite people.
-							</Typography>
-							<Box
-								sx={{ mt: 4, display: "flex", gap: 2, justifyContent: "center" }}
-							>
-								<Button
-									variant="contained"
-									size="large"
-									onClick={handleOpenSignup}
-									sx={{ px: 4 }}
-								>
-									Get Started
-								</Button>
-								<Button
-									variant="outlined"
-									size="large"
-									onClick={handleOpenLogin}
-									sx={{ px: 4 }}
-								>
-									Sign In
-								</Button>
-							</Box>
-						</Box>
-					</Container>
-				</>
-			)}
-
-			<AuthModal
-				open={authModalOpen}
-				onClose={handleCloseAuth}
-				initialMode={authMode}
-			/>
+			<MainLayout />
 		</Box>
 	);
 };
@@ -146,11 +17,9 @@ const AppContent = () => {
 function App() {
 	return (
 		<ThemeProvider>
-			<AuthProvider>
-				<Router>
-					<AppContent />
-				</Router>
-			</AuthProvider>
+			<Router>
+				<AppContent />
+			</Router>
 		</ThemeProvider>
 	);
 }
