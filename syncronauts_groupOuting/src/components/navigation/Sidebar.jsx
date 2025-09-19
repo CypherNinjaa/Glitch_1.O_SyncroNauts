@@ -9,15 +9,21 @@ import {
   ListItemText,
   Typography,
   Box,
-  Divider
+  Divider,
+  IconButton,
+  Switch,
+  FormControlLabel
 } from '@mui/material';
 import {
   Home as HomeIcon,
   Chat as ChatIcon,
   Event as EventIcon,
   Person as PersonIcon,
-  AccountBalanceWallet as ExpenseIcon
+  AccountBalanceWallet as ExpenseIcon,
+  Brightness4 as DarkModeIcon,
+  Brightness7 as LightModeIcon
 } from '@mui/icons-material';
+import { useTheme } from '../../App';
 
 const drawerWidth = 240;
 
@@ -25,13 +31,14 @@ const navigationItems = [
   { label: 'Home', icon: <HomeIcon />, path: '/' },
   { label: 'Chat', icon: <ChatIcon />, path: '/chat' },
   { label: 'Events', icon: <EventIcon />, path: '/events' },
-  { label: 'Profile', icon: <PersonIcon />, path: '/profile' },
   { label: 'Expenses', icon: <ExpenseIcon />, path: '/expenses' },
+  { label: 'Profile', icon: <PersonIcon />, path: '/profile' },
 ];
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { darkMode, toggleDarkMode } = useTheme();
 
   const handleItemClick = (path) => {
     navigate(path);
@@ -46,41 +53,108 @@ const Sidebar = () => {
         '& .MuiDrawer-paper': {
           width: drawerWidth,
           boxSizing: 'border-box',
+          display: 'flex',
+          flexDirection: 'column',
         },
       }}
     >
-      <Box sx={{ p: 2 }}>
-        <Typography variant="h6" component="div" sx={{ fontWeight: 'bold' }}>
+      <Box sx={{ p: 3 }}>
+        <Typography variant="h5" component="div" sx={{ 
+          fontWeight: 700, 
+          background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+          backgroundClip: 'text',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          mb: 0.5
+        }}>
           SyncroNauts
         </Typography>
-        <Typography variant="subtitle2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 500 }}>
           Group Outing Planner
         </Typography>
       </Box>
-      <Divider />
-      <List>
+      <Divider sx={{ mx: 2, opacity: 0.3 }} />
+      <List sx={{ flexGrow: 1, px: 2, py: 1 }}>
         {navigationItems.map((item) => (
-          <ListItem key={item.label} disablePadding>
+          <ListItem key={item.label} disablePadding sx={{ mb: 1 }}>
             <ListItemButton
               onClick={() => handleItemClick(item.path)}
               selected={location.pathname === item.path}
               sx={{
+                borderRadius: 3,
+                py: 1.5,
+                px: 2,
                 '&.Mui-selected': {
-                  backgroundColor: 'primary.light',
+                  background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+                  color: 'white',
                   '&:hover': {
-                    backgroundColor: 'primary.light',
+                    background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
+                  },
+                  '& .MuiListItemIcon-root': {
+                    color: 'white',
                   },
                 },
+                '&:hover': {
+                  backgroundColor: 'rgba(99, 102, 241, 0.08)',
+                },
+                transition: 'all 0.2s ease-in-out',
               }}
             >
-              <ListItemIcon sx={{ color: location.pathname === item.path ? 'primary.main' : 'inherit' }}>
+              <ListItemIcon sx={{ 
+                minWidth: 40,
+                color: location.pathname === item.path ? 'white' : 'text.secondary'
+              }}>
                 {item.icon}
               </ListItemIcon>
-              <ListItemText primary={item.label} />
+              <ListItemText 
+                primary={item.label} 
+                sx={{
+                  '& .MuiTypography-root': {
+                    fontWeight: location.pathname === item.path ? 600 : 500,
+                  }
+                }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
+      <Divider sx={{ mx: 2, opacity: 0.3 }} />
+      <Box sx={{ p: 3 }}>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={darkMode}
+              onChange={toggleDarkMode}
+              sx={{
+                '& .MuiSwitch-switchBase.Mui-checked': {
+                  color: '#6366f1',
+                  '& + .MuiSwitch-track': {
+                    backgroundColor: '#6366f1',
+                  },
+                },
+              }}
+            />
+          }
+          label={
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Box sx={{
+                p: 1,
+                borderRadius: 2,
+                backgroundColor: darkMode ? 'rgba(99, 102, 241, 0.1)' : 'rgba(0, 0, 0, 0.05)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                {darkMode ? <DarkModeIcon sx={{ fontSize: 20 }} /> : <LightModeIcon sx={{ fontSize: 20 }} />}
+              </Box>
+              <Typography variant="body2" sx={{ fontWeight: 500 }}>
+                {darkMode ? 'Dark' : 'Light'} Mode
+              </Typography>
+            </Box>
+          }
+          sx={{ m: 0 }}
+        />
+      </Box>
     </Drawer>
   );
 };
