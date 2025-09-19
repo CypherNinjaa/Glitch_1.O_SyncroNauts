@@ -7,25 +7,58 @@ import {
   CardContent,
   Grid,
   Button,
-  Paper
+  Paper,
+  IconButton,
+  useTheme,
+  useMediaQuery
 } from '@mui/material';
 import {
   Group as GroupIcon,
   Event as EventIcon,
   AttachMoney as MoneyIcon,
-  Chat as ChatIcon
+  Chat as ChatIcon,
+  Brightness4 as DarkModeIcon,
+  Brightness7 as LightModeIcon
 } from '@mui/icons-material';
+import { useTheme as useCustomTheme } from '../App';
 
 const Home = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const { darkMode, toggleDarkMode } = useCustomTheme();
+
   return (
     <Container maxWidth="lg">
-      <Box sx={{ mb: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Welcome to Group Outing Planner
-        </Typography>
-        <Typography variant="subtitle1" color="text.secondary">
-          Plan your perfect group adventure together
-        </Typography>
+      <Box sx={{ 
+        mb: 4, 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'flex-start',
+        flexDirection: isMobile ? 'row' : 'column'
+      }}>
+        <Box>
+          <Typography variant="h4" component="h1" gutterBottom>
+            Welcome to Group Outing Planner
+          </Typography>
+          <Typography variant="subtitle1" color="text.secondary">
+            Plan your perfect group adventure together
+          </Typography>
+        </Box>
+        
+        {/* Dark Mode Toggle - Mobile Only */}
+        {isMobile && (
+          <IconButton 
+            onClick={toggleDarkMode} 
+            color="inherit"
+            sx={{ 
+              mt: 1,
+              border: 1,
+              borderColor: 'divider'
+            }}
+          >
+            {darkMode ? <LightModeIcon /> : <DarkModeIcon />}
+          </IconButton>
+        )}
       </Box>
 
       <Grid container spacing={3}>

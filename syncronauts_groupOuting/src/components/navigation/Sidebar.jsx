@@ -9,15 +9,21 @@ import {
   ListItemText,
   Typography,
   Box,
-  Divider
+  Divider,
+  IconButton,
+  Switch,
+  FormControlLabel
 } from '@mui/material';
 import {
   Home as HomeIcon,
   Chat as ChatIcon,
   Event as EventIcon,
   Person as PersonIcon,
-  AccountBalanceWallet as ExpenseIcon
+  AccountBalanceWallet as ExpenseIcon,
+  Brightness4 as DarkModeIcon,
+  Brightness7 as LightModeIcon
 } from '@mui/icons-material';
+import { useTheme } from '../../App';
 
 const drawerWidth = 240;
 
@@ -25,13 +31,14 @@ const navigationItems = [
   { label: 'Home', icon: <HomeIcon />, path: '/' },
   { label: 'Chat', icon: <ChatIcon />, path: '/chat' },
   { label: 'Events', icon: <EventIcon />, path: '/events' },
-  { label: 'Profile', icon: <PersonIcon />, path: '/profile' },
   { label: 'Expenses', icon: <ExpenseIcon />, path: '/expenses' },
+  { label: 'Profile', icon: <PersonIcon />, path: '/profile' },
 ];
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const { darkMode, toggleDarkMode } = useTheme();
 
   const handleItemClick = (path) => {
     navigate(path);
@@ -46,6 +53,8 @@ const Sidebar = () => {
         '& .MuiDrawer-paper': {
           width: drawerWidth,
           boxSizing: 'border-box',
+          display: 'flex',
+          flexDirection: 'column',
         },
       }}
     >
@@ -58,7 +67,7 @@ const Sidebar = () => {
         </Typography>
       </Box>
       <Divider />
-      <List>
+      <List sx={{ flexGrow: 1 }}>
         {navigationItems.map((item) => (
           <ListItem key={item.label} disablePadding>
             <ListItemButton
@@ -81,6 +90,27 @@ const Sidebar = () => {
           </ListItem>
         ))}
       </List>
+      <Divider />
+      <Box sx={{ p: 2 }}>
+        <FormControlLabel
+          control={
+            <Switch
+              checked={darkMode}
+              onChange={toggleDarkMode}
+              icon={<LightModeIcon />}
+              checkedIcon={<DarkModeIcon />}
+            />
+          }
+          label={
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              {darkMode ? <DarkModeIcon /> : <LightModeIcon />}
+              <Typography variant="body2">
+                {darkMode ? 'Dark' : 'Light'} Mode
+              </Typography>
+            </Box>
+          }
+        />
+      </Box>
     </Drawer>
   );
 };
