@@ -13,47 +13,101 @@ const ThemeContext = createContext({
 // Define color palettes
 const lightPalette = {
 	primary: {
-		main: "#1976d2",
-		light: "#42a5f5",
-		dark: "#1565c0",
+		main: "#6366f1",
+		light: "#8b5cf6",
+		dark: "#4f46e5",
 		contrastText: "#ffffff",
 	},
 	secondary: {
-		main: "#dc004e",
-		light: "#ff5983",
-		dark: "#9a0036",
+		main: "#6b7280",
+		light: "#9ca3af",
+		dark: "#4b5563",
 		contrastText: "#ffffff",
 	},
+	success: {
+		main: "#10b981",
+		light: "#34d399",
+		dark: "#059669",
+	},
+	warning: {
+		main: "#f59e0b",
+		light: "#fbbf24",
+		dark: "#d97706",
+	},
+	error: {
+		main: "#ef4444",
+		light: "#f87171",
+		dark: "#dc2626",
+	},
 	background: {
-		default: "#f5f5f5",
+		default: "#f8fafc",
 		paper: "#ffffff",
 	},
 	text: {
-		primary: "#212121",
-		secondary: "#757575",
+		primary: "#0f172a",
+		secondary: "#64748b",
+	},
+	grey: {
+		50: "#f8fafc",
+		100: "#f1f5f9",
+		200: "#e2e8f0",
+		300: "#cbd5e1",
+		400: "#94a3b8",
+		500: "#64748b",
+		600: "#475569",
+		700: "#334155",
+		800: "#1e293b",
+		900: "#0f172a",
 	},
 };
 
 const darkPalette = {
 	primary: {
-		main: "#90caf9",
-		light: "#e3f2fd",
-		dark: "#42a5f5",
-		contrastText: "#000000",
+		main: "#6366f1",
+		light: "#8b5cf6",
+		dark: "#4f46e5",
+		contrastText: "#ffffff",
 	},
 	secondary: {
-		main: "#f48fb1",
-		light: "#ffc1e3",
-		dark: "#bf5f82",
-		contrastText: "#000000",
+		main: "#6b7280",
+		light: "#9ca3af",
+		dark: "#4b5563",
+		contrastText: "#ffffff",
+	},
+	success: {
+		main: "#10b981",
+		light: "#34d399",
+		dark: "#059669",
+	},
+	warning: {
+		main: "#f59e0b",
+		light: "#fbbf24",
+		dark: "#d97706",
+	},
+	error: {
+		main: "#ef4444",
+		light: "#f87171",
+		dark: "#dc2626",
 	},
 	background: {
-		default: "#121212",
-		paper: "#1e1e1e",
+		default: "#0f172a",
+		paper: "#1e293b",
 	},
 	text: {
-		primary: "#ffffff",
-		secondary: "#aaaaaa",
+		primary: "#f1f5f9",
+		secondary: "#94a3b8",
+	},
+	grey: {
+		50: "#f8fafc",
+		100: "#f1f5f9",
+		200: "#e2e8f0",
+		300: "#cbd5e1",
+		400: "#94a3b8",
+		500: "#64748b",
+		600: "#475569",
+		700: "#334155",
+		800: "#1e293b",
+		900: "#0f172a",
 	},
 };
 
