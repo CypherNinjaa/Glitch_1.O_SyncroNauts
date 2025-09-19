@@ -27,6 +27,7 @@ import {
 	Dashboard as DashboardIcon,
 	ChevronLeft as ChevronLeftIcon,
 	ChevronRight as ChevronRightIcon,
+	Groups as GroupChatIcon,
 } from "@mui/icons-material";
 import { useTheme } from "../../hooks/useTheme";
 
@@ -36,6 +37,12 @@ const drawerWidthCollapsed = 72;
 const navigationItems = [
 	{ label: "Dashboard", icon: <HomeIcon />, path: "/", badge: null },
 	{ label: "Chat", icon: <ChatIcon />, path: "/chat", badge: "3" },
+	{
+		label: "Group Chat",
+		icon: <GroupChatIcon />,
+		path: "/group-chat",
+		badge: "New",
+	},
 	{ label: "Events", icon: <EventIcon />, path: "/events", badge: null },
 	{ label: "Expenses", icon: <ExpenseIcon />, path: "/expenses", badge: null },
 	{ label: "Profile", icon: <PersonIcon />, path: "/profile", badge: null },
@@ -62,23 +69,30 @@ const Sidebar = ({ collapsed = true, onToggle }) => {
 			sx={{
 				width: collapsed ? drawerWidthCollapsed : drawerWidthExpanded,
 				flexShrink: 0,
-				transition: 'width 0.3s ease-in-out',
+				transition: "width 0.3s ease-in-out",
 				"& .MuiDrawer-paper": {
 					width: collapsed ? drawerWidthCollapsed : drawerWidthExpanded,
 					boxSizing: "border-box",
 					display: "flex",
 					flexDirection: "column",
-					bgcolor: 'background.paper',
-					borderRight: '1px solid',
-					borderColor: 'divider',
-					transition: 'width 0.3s ease-in-out',
-					overflowX: 'hidden',
+					bgcolor: "background.paper",
+					borderRight: "1px solid",
+					borderColor: "divider",
+					transition: "width 0.3s ease-in-out",
+					overflowX: "hidden",
 				},
 			}}
 		>
 			{/* Header Section */}
 			<Box sx={{ p: collapsed ? 1.5 : 3, pb: collapsed ? 1.5 : 2 }}>
-				<Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: collapsed ? 0 : 1 }}>
+				<Box
+					sx={{
+						display: "flex",
+						alignItems: "center",
+						gap: 2,
+						mb: collapsed ? 0 : 1,
+					}}
+				>
 					{collapsed ? (
 						<Tooltip title="Dashboard" placement="right">
 							<IconButton
@@ -87,12 +101,16 @@ const Sidebar = ({ collapsed = true, onToggle }) => {
 									width: 40,
 									height: 40,
 									borderRadius: 2,
-									bgcolor: location.pathname === "/" ? 'primary.main' : 'primary.main',
-									color: 'white',
-									'&:hover': {
-										bgcolor: location.pathname === "/" ? 'primary.dark' : 'primary.dark',
+									bgcolor:
+										location.pathname === "/" ? "primary.main" : "primary.main",
+									color: "white",
+									"&:hover": {
+										bgcolor:
+											location.pathname === "/"
+												? "primary.dark"
+												: "primary.dark",
 									},
-									transition: 'all 0.2s ease-in-out',
+									transition: "all 0.2s ease-in-out",
 								}}
 							>
 								<DashboardIcon sx={{ fontSize: 24 }} />
@@ -106,12 +124,12 @@ const Sidebar = ({ collapsed = true, onToggle }) => {
 									width: 40,
 									height: 40,
 									borderRadius: 2,
-									bgcolor: 'primary.main',
-									color: 'white',
-									'&:hover': {
-										bgcolor: 'primary.dark',
+									bgcolor: "primary.main",
+									color: "white",
+									"&:hover": {
+										bgcolor: "primary.dark",
 									},
-									transition: 'all 0.2s ease-in-out',
+									transition: "all 0.2s ease-in-out",
 								}}
 							>
 								<DashboardIcon sx={{ fontSize: 24 }} />
@@ -122,7 +140,7 @@ const Sidebar = ({ collapsed = true, onToggle }) => {
 								sx={{
 									fontWeight: 700,
 									color: "text.primary",
-									cursor: 'pointer',
+									cursor: "pointer",
 								}}
 								onClick={() => handleItemClick("/")}
 							>
@@ -141,26 +159,33 @@ const Sidebar = ({ collapsed = true, onToggle }) => {
 					</Typography>
 				)}
 			</Box>
-			
+
 			{/* Toggle Button */}
-			<Box sx={{ display: 'flex', justifyContent: collapsed ? 'center' : 'flex-end', px: collapsed ? 1 : 2, pb: 1 }}>
+			<Box
+				sx={{
+					display: "flex",
+					justifyContent: collapsed ? "center" : "flex-end",
+					px: collapsed ? 1 : 2,
+					pb: 1,
+				}}
+			>
 				<IconButton
 					onClick={handleToggleSidebar}
 					sx={{
 						p: 1,
 						borderRadius: 1.5,
-						bgcolor: 'action.hover',
-						'&:hover': {
-							bgcolor: 'action.selected',
+						bgcolor: "action.hover",
+						"&:hover": {
+							bgcolor: "action.selected",
 						},
 					}}
 				>
 					{collapsed ? <ChevronRightIcon /> : <ChevronLeftIcon />}
 				</IconButton>
 			</Box>
-			
+
 			<Divider sx={{ mx: collapsed ? 1 : 2, opacity: 0.3 }} />
-			
+
 			{/* Navigation */}
 			<List sx={{ flexGrow: 1, px: collapsed ? 1 : 2, py: 2 }}>
 				{navigationItems.map((item) => (
@@ -175,7 +200,7 @@ const Sidebar = ({ collapsed = true, onToggle }) => {
 										py: 1.5,
 										px: 1.5,
 										minHeight: 48,
-										justifyContent: 'center',
+										justifyContent: "center",
 										"&.Mui-selected": {
 											backgroundColor: "primary.main",
 											color: "white",
@@ -187,16 +212,21 @@ const Sidebar = ({ collapsed = true, onToggle }) => {
 											},
 										},
 										"&:hover": {
-											backgroundColor: darkMode ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.04)",
+											backgroundColor: darkMode
+												? "rgba(255, 255, 255, 0.05)"
+												: "rgba(0, 0, 0, 0.04)",
 										},
 										transition: "all 0.2s ease-in-out",
 									}}
 								>
 									<ListItemIcon
 										sx={{
-											minWidth: 'auto',
-											color: location.pathname === item.path ? "white" : "text.secondary",
-											justifyContent: 'center',
+											minWidth: "auto",
+											color:
+												location.pathname === item.path
+													? "white"
+													: "text.secondary",
+											justifyContent: "center",
 										}}
 									>
 										{item.icon}
@@ -226,7 +256,9 @@ const Sidebar = ({ collapsed = true, onToggle }) => {
 										},
 									},
 									"&:hover": {
-										backgroundColor: darkMode ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.04)",
+										backgroundColor: darkMode
+											? "rgba(255, 255, 255, 0.05)"
+											: "rgba(0, 0, 0, 0.04)",
 									},
 									transition: "all 0.2s ease-in-out",
 								}}
@@ -234,7 +266,10 @@ const Sidebar = ({ collapsed = true, onToggle }) => {
 								<ListItemIcon
 									sx={{
 										minWidth: 40,
-										color: location.pathname === item.path ? "white" : "text.secondary",
+										color:
+											location.pathname === item.path
+												? "white"
+												: "text.secondary",
 									}}
 								>
 									{item.icon}
@@ -244,7 +279,7 @@ const Sidebar = ({ collapsed = true, onToggle }) => {
 									sx={{
 										"& .MuiTypography-root": {
 											fontWeight: location.pathname === item.path ? 600 : 500,
-											fontSize: '0.9rem',
+											fontSize: "0.9rem",
 										},
 									}}
 								/>
@@ -254,9 +289,13 @@ const Sidebar = ({ collapsed = true, onToggle }) => {
 										label={item.badge}
 										sx={{
 											height: 20,
-											fontSize: '0.75rem',
-											bgcolor: location.pathname === item.path ? 'rgba(255,255,255,0.2)' : 'primary.main',
-											color: location.pathname === item.path ? 'white' : 'white',
+											fontSize: "0.75rem",
+											bgcolor:
+												location.pathname === item.path
+													? "rgba(255,255,255,0.2)"
+													: "primary.main",
+											color:
+												location.pathname === item.path ? "white" : "white",
 										}}
 									/>
 								)}
@@ -265,23 +304,26 @@ const Sidebar = ({ collapsed = true, onToggle }) => {
 					</ListItem>
 				))}
 			</List>
-			
+
 			<Divider sx={{ mx: collapsed ? 1 : 2, opacity: 0.3 }} />
-			
+
 			{/* Theme Toggle */}
 			<Box sx={{ p: collapsed ? 1.5 : 3 }}>
 				{collapsed ? (
-					<Tooltip title={`${darkMode ? 'Light' : 'Dark'} Mode`} placement="right">
+					<Tooltip
+						title={`${darkMode ? "Light" : "Dark"} Mode`}
+						placement="right"
+					>
 						<IconButton
 							onClick={toggleTheme}
 							sx={{
-								width: '100%',
+								width: "100%",
 								p: 1.5,
 								borderRadius: 2,
 								backgroundColor: darkMode
 									? "rgba(148, 163, 184, 0.1)"
 									: "rgba(226, 232, 240, 0.5)",
-								'&:hover': {
+								"&:hover": {
 									backgroundColor: darkMode
 										? "rgba(148, 163, 184, 0.2)"
 										: "rgba(226, 232, 240, 0.8)",
