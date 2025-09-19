@@ -42,14 +42,13 @@ const BottomNavigation = () => {
         left: 0, 
         right: 0,
         zIndex: 1000,
-        background: isDark 
-          ? 'linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 100%)'
-          : 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.95) 100%)',
-        backdropFilter: 'blur(20px)',
+        backgroundColor: isDark ? 'rgba(30, 41, 59, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+        backdropFilter: 'blur(12px)',
         borderTop: isDark 
-          ? '1px solid rgba(99, 102, 241, 0.2)'
-          : '1px solid rgba(99, 102, 241, 0.1)',
-        borderRadius: '24px 24px 0 0',
+          ? '1px solid rgba(148, 163, 184, 0.1)'
+          : '1px solid rgba(226, 232, 240, 0.8)',
+        borderRadius: '12px 12px 0 0',
+        pb: 'env(safe-area-inset-bottom)', // Handle iPhone home indicator
       }} 
       elevation={0}
     >
@@ -59,31 +58,41 @@ const BottomNavigation = () => {
         showLabels
         sx={{
           backgroundColor: 'transparent',
+          height: 'auto',
+          py: 1,
           '& .MuiBottomNavigationAction-root': {
-            borderRadius: 3,
-            mx: 0.5,
-            my: 1,
-            transition: 'all 0.3s ease-in-out',
-            color: isDark ? 'rgba(226, 232, 240, 0.6)' : 'rgba(100, 116, 139, 0.8)',
+            minWidth: 'auto',
+            maxWidth: 'none',
+            flex: 1,
+            borderRadius: 2,
+            mx: 0.25,
+            py: 1,
+            transition: 'all 0.2s ease-in-out',
+            color: isDark ? 'rgba(148, 163, 184, 0.7)' : 'rgba(100, 116, 139, 0.7)',
             '&.Mui-selected': {
-              background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+              backgroundColor: '#6366f1',
               color: 'white',
               '& .MuiBottomNavigationAction-label': {
-                fontSize: '0.75rem',
+                fontSize: '0.7rem',
                 fontWeight: 600,
                 color: 'white',
+                mt: 0.5,
               },
               '& .MuiSvgIcon-root': {
+                fontSize: '1.2rem',
                 color: 'white',
               },
             },
             '&:not(.Mui-selected)': {
               '& .MuiBottomNavigationAction-label': {
+                fontSize: '0.7rem',
                 fontWeight: 500,
-                color: isDark ? 'rgba(226, 232, 240, 0.7)' : 'rgba(100, 116, 139, 0.8)',
+                color: isDark ? 'rgba(148, 163, 184, 0.8)' : 'rgba(100, 116, 139, 0.8)',
+                mt: 0.5,
               },
               '& .MuiSvgIcon-root': {
-                color: isDark ? 'rgba(226, 232, 240, 0.6)' : 'rgba(100, 116, 139, 0.7)',
+                fontSize: '1.2rem',
+                color: isDark ? 'rgba(148, 163, 184, 0.7)' : 'rgba(100, 116, 139, 0.7)',
               },
             },
           },

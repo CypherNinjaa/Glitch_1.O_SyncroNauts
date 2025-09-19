@@ -30,9 +30,10 @@ const MainLayout = () => {
         component="main" 
         sx={{ 
           flexGrow: 1, 
-          p: 3,
-          mb: isMobile ? 7 : 0, // Add margin bottom for mobile bottom nav
-          overflow: 'auto'
+          p: isMobile ? 2 : 3,
+          pb: isMobile ? 10 : 3, // More bottom padding for mobile to account for bottom nav
+          overflow: 'auto',
+          minHeight: '100vh'
         }}
       >
         <Routes>
