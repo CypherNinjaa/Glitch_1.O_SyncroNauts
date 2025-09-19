@@ -47,6 +47,7 @@ const lightPalette = {
 		primary: "#0f172a",
 		secondary: "#64748b",
 	},
+	divider: "#cbd5e1",
 	grey: {
 		50: "#f8fafc",
 		100: "#f1f5f9",
@@ -97,6 +98,7 @@ const darkPalette = {
 		primary: "#f1f5f9",
 		secondary: "#94a3b8",
 	},
+	divider: "#334155",
 	grey: {
 		50: "#f8fafc",
 		100: "#f1f5f9",
@@ -220,8 +222,8 @@ export const ThemeProvider = ({ children }) => {
 		if (savedTheme) {
 			return savedTheme === "dark";
 		}
-		// Default to system preference
-		return window.matchMedia("(prefers-color-scheme: dark)").matches;
+		// Default to dark mode
+		return true;
 	});
 
 	const theme = createAppTheme(darkMode);
