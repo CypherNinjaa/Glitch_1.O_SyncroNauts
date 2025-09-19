@@ -13,6 +13,7 @@ import ThemeProvider from "./contexts/ThemeContext";
 import { useAuth } from "./hooks/useAuth";
 import ThemeToggle from "./components/ui/ThemeToggle";
 import AuthModal from "./components/auth/AuthModal";
+import Home from "./pages/Home";
 
 // Main App Content Component
 const AppContent = () => {
@@ -100,37 +101,7 @@ const AppContent = () => {
 
 			<Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
 				{user ? (
-					<Box>
-						<Typography variant="h4" gutterBottom>
-							Welcome to SyncroNauts! 🚀
-						</Typography>
-						<Typography variant="body1" color="text.secondary" paragraph>
-							You're successfully authenticated and ready to start planning
-							group outings!
-						</Typography>
-						<Box
-							sx={{
-								mt: 3,
-								p: 3,
-								backgroundColor: "background.paper",
-								borderRadius: 2,
-							}}
-						>
-							<Typography variant="h6" gutterBottom>
-								Your Account Details:
-							</Typography>
-							<Typography variant="body2">
-								<strong>Email:</strong> {user.email}
-							</Typography>
-							<Typography variant="body2">
-								<strong>User ID:</strong> {user.id}
-							</Typography>
-							<Typography variant="body2">
-								<strong>Account Created:</strong>{" "}
-								{new Date(user.created_at).toLocaleDateString()}
-							</Typography>
-						</Box>
-					</Box>
+					<Home />
 				) : (
 					<Box sx={{ textAlign: "center", py: 8 }}>
 						<Typography variant="h2" gutterBottom>
