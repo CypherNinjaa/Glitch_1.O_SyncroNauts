@@ -27,21 +27,50 @@ function App() {
       mode: darkMode ? 'dark' : 'light',
       primary: {
         main: '#6366f1',
-        light: '#818cf8',
+        light: '#8b5cf6',
         dark: '#4f46e5',
+        contrastText: '#ffffff',
       },
       secondary: {
-        main: '#ec4899',
-        light: '#f472b6',
-        dark: '#db2777',
+        main: '#6b7280',
+        light: '#9ca3af',
+        dark: '#4b5563',
+        contrastText: '#ffffff',
+      },
+      success: {
+        main: '#10b981',
+        light: '#34d399',
+        dark: '#059669',
+      },
+      warning: {
+        main: '#f59e0b',
+        light: '#fbbf24',
+        dark: '#d97706',
+      },
+      error: {
+        main: '#ef4444',
+        light: '#f87171',
+        dark: '#dc2626',
       },
       background: {
-        default: darkMode ? '#0f0f23' : '#fafafa',
-        paper: darkMode ? '#1a1a2e' : '#ffffff',
+        default: darkMode ? '#0f172a' : '#f8fafc',
+        paper: darkMode ? '#1e293b' : '#ffffff',
       },
       text: {
-        primary: darkMode ? '#e2e8f0' : '#1e293b',
+        primary: darkMode ? '#f1f5f9' : '#0f172a',
         secondary: darkMode ? '#94a3b8' : '#64748b',
+      },
+      grey: {
+        50: '#f8fafc',
+        100: '#f1f5f9',
+        200: '#e2e8f0',
+        300: '#cbd5e1',
+        400: '#94a3b8',
+        500: '#64748b',
+        600: '#475569',
+        700: '#334155',
+        800: '#1e293b',
+        900: '#0f172a',
       },
     },
     typography: {
@@ -65,15 +94,16 @@ function App() {
         styleOverrides: {
           root: {
             boxShadow: darkMode 
-              ? '0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2)'
-              : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-            border: darkMode ? '1px solid rgba(255, 255, 255, 0.1)' : 'none',
-            transition: 'all 0.3s ease-in-out',
+              ? '0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 1px 2px 0 rgba(0, 0, 0, 0.3)'
+              : '0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)',
+            border: darkMode ? '1px solid rgba(148, 163, 184, 0.1)' : '1px solid rgba(226, 232, 240, 0.8)',
+            borderRadius: 12,
+            transition: 'all 0.2s ease-in-out',
             '&:hover': {
-              transform: 'translateY(-2px)',
+              transform: 'translateY(-1px)',
               boxShadow: darkMode
-                ? '0 10px 25px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3)'
-                : '0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                ? '0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -1px rgba(0, 0, 0, 0.4)'
+                : '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
             },
           },
         },
@@ -81,19 +111,31 @@ function App() {
       MuiButton: {
         styleOverrides: {
           root: {
-            borderRadius: 12,
+            borderRadius: 8,
             textTransform: 'none',
             fontWeight: 600,
-            padding: '12px 24px',
+            padding: '10px 20px',
             boxShadow: 'none',
             '&:hover': {
-              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+              boxShadow: 'none',
             },
           },
           contained: {
-            background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+            backgroundColor: '#6366f1',
+            color: '#ffffff',
             '&:hover': {
-              background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
+              backgroundColor: '#4f46e5',
+            },
+          },
+          outlined: {
+            borderColor: '#6366f1',
+            color: '#6366f1',
+            borderWidth: 1.5,
+            '&:hover': {
+              borderColor: '#4f46e5',
+              color: '#4f46e5',
+              backgroundColor: 'rgba(99, 102, 241, 0.04)',
+              borderWidth: 1.5,
             },
           },
         },
@@ -102,17 +144,15 @@ function App() {
         styleOverrides: {
           root: {
             backgroundImage: 'none',
-            border: darkMode ? '1px solid rgba(255, 255, 255, 0.1)' : 'none',
+            border: darkMode ? '1px solid rgba(148, 163, 184, 0.1)' : '1px solid rgba(226, 232, 240, 0.8)',
           },
         },
       },
       MuiDrawer: {
         styleOverrides: {
           paper: {
-            background: darkMode 
-              ? 'linear-gradient(180deg, #1a1a2e 0%, #16213e 100%)'
-              : 'linear-gradient(180deg, #ffffff 0%, #f8fafc 100%)',
-            borderRight: darkMode ? '1px solid rgba(255, 255, 255, 0.1)' : '1px solid rgba(0, 0, 0, 0.08)',
+            backgroundColor: darkMode ? '#1e293b' : '#ffffff',
+            borderRight: darkMode ? '1px solid rgba(148, 163, 184, 0.1)' : '1px solid rgba(226, 232, 240, 0.8)',
           },
         },
       },

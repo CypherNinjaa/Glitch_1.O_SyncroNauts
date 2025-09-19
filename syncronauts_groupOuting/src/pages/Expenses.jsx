@@ -95,15 +95,16 @@ const Expenses = () => {
   const perPersonShare = totalExpenses / 4; // Assuming 4 people
 
   const getCategoryColor = (category) => {
+    // Use a more varied but still harmonious color palette
     const colors = {
-      'Food': 'success',
-      'Transportation': 'primary',
-      'Entertainment': 'secondary',
-      'Accommodation': 'warning',
-      'Activities': 'info',
-      'Other': 'default'
+      'Food': 'success',        // Subtle green - makes sense for food
+      'Transportation': 'primary', // Blue - our brand color
+      'Entertainment': 'secondary', // Gray - neutral
+      'Accommodation': 'warning',   // Subtle amber - for accommodation
+      'Activities': 'primary',      // Blue - consistent with main color
+      'Other': 'secondary'          // Gray - neutral
     };
-    return colors[category] || 'default';
+    return colors[category] || 'secondary';
   };
 
   return (
@@ -144,8 +145,8 @@ const Expenses = () => {
           <Card>
             <CardContent>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <PersonIcon color="success" sx={{ mr: 1 }} />
-                <Typography variant="h6" color="success.main">
+                <PersonIcon sx={{ mr: 1, color: '#10b981' }} />
+                <Typography variant="h6" sx={{ color: '#10b981' }}>
                   ${perPersonShare.toFixed(2)}
                 </Typography>
               </Box>
@@ -160,8 +161,8 @@ const Expenses = () => {
           <Card>
             <CardContent>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <TrendingUpIcon color="warning" sx={{ mr: 1 }} />
-                <Typography variant="h6" color="warning.main">
+                <TrendingUpIcon sx={{ mr: 1, color: '#f59e0b' }} />
+                <Typography variant="h6" sx={{ color: '#f59e0b' }}>
                   +$25.50
                 </Typography>
               </Box>
@@ -176,8 +177,8 @@ const Expenses = () => {
           <Card>
             <CardContent>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <TrendingDownIcon color="error" sx={{ mr: 1 }} />
-                <Typography variant="h6" color="error.main">
+                <TrendingDownIcon sx={{ mr: 1, color: '#059669' }} />
+                <Typography variant="h6" sx={{ color: '#059669' }}>
                   -$15.25
                 </Typography>
               </Box>

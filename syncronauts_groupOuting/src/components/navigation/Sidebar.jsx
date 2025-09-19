@@ -61,10 +61,7 @@ const Sidebar = () => {
       <Box sx={{ p: 3 }}>
         <Typography variant="h5" component="div" sx={{ 
           fontWeight: 700, 
-          background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
-          backgroundClip: 'text',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
+          color: '#6366f1',
           mb: 0.5
         }}>
           SyncroNauts
@@ -81,21 +78,21 @@ const Sidebar = () => {
               onClick={() => handleItemClick(item.path)}
               selected={location.pathname === item.path}
               sx={{
-                borderRadius: 3,
+                borderRadius: 2,
                 py: 1.5,
                 px: 2,
                 '&.Mui-selected': {
-                  background: 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%)',
+                  backgroundColor: '#6366f1',
                   color: 'white',
                   '&:hover': {
-                    background: 'linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%)',
+                    backgroundColor: '#4f46e5',
                   },
                   '& .MuiListItemIcon-root': {
                     color: 'white',
                   },
                 },
                 '&:hover': {
-                  backgroundColor: 'rgba(99, 102, 241, 0.08)',
+                  backgroundColor: 'rgba(99, 102, 241, 0.04)',
                 },
                 transition: 'all 0.2s ease-in-out',
               }}
@@ -140,7 +137,7 @@ const Sidebar = () => {
               <Box sx={{
                 p: 1,
                 borderRadius: 2,
-                backgroundColor: darkMode ? 'rgba(99, 102, 241, 0.1)' : 'rgba(0, 0, 0, 0.05)',
+                backgroundColor: darkMode ? 'rgba(148, 163, 184, 0.1)' : 'rgba(226, 232, 240, 0.5)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
